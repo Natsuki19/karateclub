@@ -102,7 +102,8 @@ class WeisfeilerLehmanHashing(object):
         new_features = {}
         for node in self.graph.nodes():
             nebs = self.graph.neighbors(node)
-            degs = [self.features[neb] for neb in nebs]
+            #degs = [self.features[neb] for neb in nebs]
+            degs = [self.features[neb] if neb in self.features else 0 for neb in nebs]
             features = [str(self.features[node])] + \
                 sorted([str(deg) for deg in degs])
             features = "_".join(features)
